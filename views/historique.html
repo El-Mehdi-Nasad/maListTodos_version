@@ -1,0 +1,43 @@
+{% extends 'layout.html' %} 
+{% block content %} 
+ 
+</br></br></br>
+<div class="container">
+ <div class="row">
+ <div class="col-md-8 col-md-offset-2">
+ <div class="jumbotron">
+ <div class="text-center">
+  <h1 style="font-family: 'Gloria Hallelujah', cursive;">Todo Historique
+  </h1>
+  </br>
+  <ul class="list-group">
+    {% for todo in todohistorique %}
+<div class="input-group">   
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+      <input type="checkbox" class="clickIci"  id="{{ todo }}" value="false" name="{{ todohistorique.indexOf(todo) }}"  onchange="changehisto(this, {{ todohistorique.indexOf(todo) }} )" />
+      </span>
+   <li class="list-group-item form-control" style="width:370px; height:40px;">
+   <div id="{{ todohistorique.indexOf(todo) }}"> {{ todo }} </div>
+   </li>
+   <span class="input-group-addon">
+     <a href="/historique/supprimer/{{ todohistorique.indexOf(todo) }}">×</a>
+  </span>
+      {% if datehistorique %}
+      <span class="input-group-addon" style="background: #dff0d8;">
+      <strong> {{ datehistorique[todohistorique.indexOf(todo)] }} </strong>
+      </span>
+      {% endif %}
+  </div>
+</div>
+    </div> 
+    {% endfor %}
+  </ul>
+
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+{% endblock %} 

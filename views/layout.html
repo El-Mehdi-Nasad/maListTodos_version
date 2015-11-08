@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <meta charset="UTF-8">
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+    body {
+     background: #dff0d8;
+    }
+    .distinguer {
+      text-decoration: line-through;
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Todo List</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                {% include './include/nav.html' %}
+            </div>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+</div>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+ <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var CheminComplet = document.location.href;
+            console.log ('Le serveur a un message pour vous : ' + CheminComplet);
+        var NomDuFichier = CheminComplet.substring(CheminComplet.lastIndexOf( "/" )+1 );
+            console.log ('Le serveur a un message pour vous : ' + NomDuFichier);
+
+           var socket = io.connect('http://localhost:8080');
+           if ( NomDuFichier == 'todo' ) {
+            if (typeof( document.getElementsByTagName('em')) != 'undefined' ) {
+              var emind = document.getElementsByTagName('em')[0].className;
+              console.log ('Le serveur a un message pour vous : ' + emind);
+              var emtodo =  document.getElementsByTagName('em')[0].getAttribute('name');
+              console.log ('Le serveur a un message pour vous : ' + emtodo);
+              socket.emit('message5',{ index: emind , element : emtodo });
+            }}
+            socket.emit('condition', NomDuFichier );
+            socket.on('message', function(message) {
+             console.log('Le serveur a un message pour vous : ' + message);
+            })
+            socket.on('checkind', function(socketusername) {
+            console.log('Le serveur a un message pour vous : ' + socketusername);
+            })
+            socket.on('checkind3', function(socketusername) {
+            console.log('Le serveur a un message pour vous : ' + socketusername);
+            })
+            socket.on('message2', function(indextab) {
+            insereMessage(indextab);
+            })
+            socket.on('message3', function(indextab) {
+            insereMessage3(indextab);
+            })
+            function insereMessage (indexta) {
+            if (indexta.index1 ){
+            for ( ind in indexta.index1 ) {
+            document.getElementById(indexta.index1[ind]).className = 'distinguer'; 
+            }}
+            if (indexta.todo){
+            for ( ind in indexta.todo ) {
+            document.getElementById(indexta.todo[ind]).checked = 'checked'; 
+            document.getElementById(indexta.todo[ind]).value= 'true'; 
+            }
+            }
+            }
+            function insereMessage3 (indexta) {
+            if (indexta.index3 ){
+            for ( ind in indexta.index3 ) {
+            document.getElementById(indexta.index3[ind]).className = 'distinguer'; 
+            }}
+            if (indexta.todo3){
+            for ( ind in indexta.todo3 ) {
+            document.getElementById(indexta.todo3[ind]).checked = 'checked'; 
+            document.getElementById(indexta.todo3[ind]).value= 'true'; 
+            }
+            }
+            }
+        </script>
+`<script>
+ function change(element ,index ){
+  if(element.checked){
+   element.value='true';
+   document.getElementById(index).className = 'distinguer'; 
+   socket.emit('message1',{ index: index , element: element.id });
+   // selec.push(index);
+}
+  else{
+   element.value='false';
+   document.getElementById(index).className = '';
+   socket.emit('message',{ index: index , element : element.id });
+   // selec.splice.(selec.indexOf(index), 1);
+}
+ }
+ function changehisto(element ,index ){
+  if(element.checked){
+   element.value='true';
+   document.getElementById(index).className = 'distinguer'; 
+   socket.emit('message3',{ index: index , element: element.id });
+   // selec.push(index);
+}
+  else{
+   element.value='false';
+   document.getElementById(index).className = '';
+   socket.emit('message4',{ index: index , element : element.id });
+   // selec.splice.(selec.indexOf(index), 1);
+}
+ }
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'layout.html' %} 
+{% block content %}
+
+</br></br></br>
+<div class="container">
+ <div class="row">
+ <div class="col-md-8 col-md-offset-2">
+ <div class="jumbotron">
+ <div class="text-center">
+  <h1 style="font-family: 'Gloria Hallelujah', cursive;">Todo List
+  </h1>
+  </br></br></br></br>
+  <form action="" method="post"  class="form-horizontal">
+   <div class="form-group" style="text-align: center;"> 
+    <input type="text" name="newlogin" maxlength=53 id="newlogin"  style="width:370px; height:32px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;border: 1px solid #ccc;border-radius: 4px;color: #555;" placeholder="Login" autofocus />
+   </div>
+   <div class="form-group" style="text-align: center;"> 
+    <input type="password" name="newpassword" maxlength=53 id="newpassword"  style="width:370px; height:32px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;border: 1px solid #ccc;border-radius: 4px;color: #555;" placeholder="Password" autofocus />
+   </div>
+    <button type="submit" class="btn btn-success">Connexion</button>
+  </form>
+</br>
+
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+{% endblock %} 
