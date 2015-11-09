@@ -159,6 +159,11 @@ io.sockets.on('connection', function (socket) {
         console.log('Un client me parle ! Il me dit : ' + index.index + index.element );
       if (session.index1.indexOf(index.index) != -1 ) {
     session.index1.splice (session.index1.indexOf(index.index), 1);}
+          for ( var i=0;i < session.index1.length -1;i++ ) {
+      if ( index.index <= session.index1[i] ) {
+            session.index1[i] = session.index1[i] - 1;
+           }}
+
       if (session.index2.indexOf(index.element) != -1 ) {
     session.index2.splice (session.index2.indexOf(index.element), 1);}
      console.log( "session" + session.index1 );
