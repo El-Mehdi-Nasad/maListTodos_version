@@ -65,7 +65,12 @@ router.get('/todo', function(req, res) {
            req.session.temp1 = '';
           } 
     }
-    res.render('todo', {todolist: req.session.todolist, select1: req.session.select, vr: req.session.etat, fx: req.session.deja, date1: req.session.date1, cond: req.session.cond});
+         if ( req.session.indexSupp != '' ) {
+            var indexSupp = req.session.indexSupp ;
+            var todoSupp = req.session.todoSupp ;
+           req.session.indexSupp = null;
+           req.session.todoSupp = null ;}
+    res.render('todo', {todolist: req.session.todolist, select1: req.session.select, vr: req.session.etat, fx: req.session.deja, date1: req.session.date1, cond: indexSupp, condt: todoSupp});
 });
 
 // Ajoute une tâche
@@ -86,15 +91,13 @@ router.post('/todo/ajouter/', function(req, res) {
 // Supprime la tâche n°id
 // Supprime un élément de la todolist 
 router.get('/todo/supprimer/:id', function(req, res) {
-    if (typeof(req.session.cond) == 'undefined') {
-        req.session.cond = {condind : "",condtodo: "" };
+ 
+    if (typeof(req.session.indexSupp) == 'undefined') {
+        req.session.indexSupp = req.params.id ;
+        req.session.todoSupp = req.session.todolist[req.params.id]; 
     }
-   
     if (req.params.id != '') {
         var todo = req.session.todolist[req.params.id];
-       req.session.cond.condtodo = todo; 
-       req.session.cond.condind = req.params.id ; 
-       console.log( 'les parametres de em ' + req.session.cond.condtodo ); 
         req.session.datehistorique.push( dateFr() );
         req.session.todohistorique.push(todo);
         req.session.todolist.splice(req.params.id, 1);

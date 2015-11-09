@@ -37,8 +37,8 @@
             console.log ('Le serveur a un message pour vous : ' + NomDuFichier);
 
            var socket = io.connect('http://localhost:8080');
-           if ( NomDuFichier == 'todo' ) {
-            if (typeof( document.getElementsByTagName('em')) != 'undefined' ) {
+           if ( NomDuFichier == 'dtodo' ) {
+            if ( document.getElementsByTagName('em'))  {
               var emind = document.getElementsByTagName('em')[0].className;
               console.log ('Le serveur a un message pour vous : ' + emind);
               var emtodo =  document.getElementsByTagName('em')[0].getAttribute('name');
