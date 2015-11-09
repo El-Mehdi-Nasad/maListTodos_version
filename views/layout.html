@@ -37,10 +37,12 @@
             console.log ('Le serveur a un message pour vous : ' + NomDuFichier);
 
            var socket = io.connect('http://localhost:8080');
-           if ( NomDuFichier == 'dtodo' ) {
-            if ( document.getElementsByTagName('em'))  {
+           if ( NomDuFichier == 'todo' ) {
+            if (  document.getElementsByTagName('em').length != 0 )  {
+              console.log ( document.getElementsByTagName('em').length);
+              console.log ('je suis la');
               var emind = document.getElementsByTagName('em')[0].className;
-              console.log ('Le serveur a un message pour vous : ' + emind);
+              console.log ('Le serveur a un message pour vous je suis : ' + emind);
               var emtodo =  document.getElementsByTagName('em')[0].getAttribute('name');
               console.log ('Le serveur a un message pour vous : ' + emtodo);
               socket.emit('message5',{ index: emind , element : emtodo });

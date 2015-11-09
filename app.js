@@ -156,7 +156,7 @@ io.sockets.on('connection', function (socket) {
      console.log( "session" + session.index4 );
     });	
     socket.on('message5', function ( index) {
-        console.log('Un client me parle ! Il me dit : ' + index.index + index.element );
+        console.log('Un client me parle ! Il me dit ne s affiche pas : ' + index.index + index.element );
       if (session.index1.indexOf(index.index) != -1 ) {
     session.index1.splice (session.index1.indexOf(index.index), 1);}
           for ( var i=0;i < session.index1.length -1;i++ ) {

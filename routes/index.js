@@ -68,6 +68,7 @@ router.get('/todo', function(req, res) {
          if ( req.session.indexSupp != '' ) {
             var indexSupp = req.session.indexSupp ;
             var todoSupp = req.session.todoSupp ;
+             console.log ('je veux voir la variable temp' + indexSupp );
            req.session.indexSupp = null;
            req.session.todoSupp = null ;}
     res.render('todo', {todolist: req.session.todolist, select1: req.session.select, vr: req.session.etat, fx: req.session.deja, date1: req.session.date1, cond: indexSupp, condt: todoSupp});
@@ -92,9 +93,10 @@ router.post('/todo/ajouter/', function(req, res) {
 // Supprime un élément de la todolist 
 router.get('/todo/supprimer/:id', function(req, res) {
  
-    if (typeof(req.session.indexSupp) == 'undefined') {
+    if (req.session.indexSupp == null) {
         req.session.indexSupp = req.params.id ;
         req.session.todoSupp = req.session.todolist[req.params.id]; 
+        console.log ( 'la variable supprimee' + req.session.indexSupp );
     }
     if (req.params.id != '') {
         var todo = req.session.todolist[req.params.id];
@@ -102,6 +104,7 @@ router.get('/todo/supprimer/:id', function(req, res) {
         req.session.todohistorique.push(todo);
         req.session.todolist.splice(req.params.id, 1);
         req.session.date1.splice(req.params.id, 1);
+        console.log ( 'la variable supprimee' + req.session.indexSupp );
     }
     res.redirect('/todo');
 });
