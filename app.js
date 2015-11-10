@@ -157,16 +157,22 @@ io.sockets.on('connection', function (socket) {
     });	
     socket.on('message5', function ( index1) {
         console.log('Un client me parle ! Il me dit ne s affiche pas : ' + index1.index + index1.element );
-      if (session.index1.indexOf(index1.index) != -1 ) {
+    var tempSession = session.index1.indexOf(index1.index);
+      if (tempSession != -1 ) {
       console.log ( 'je suis a la premier condition' );
-    session.index1.splice (session.index1.indexOf(index1.index), 1);}
-      if (session.index2.indexOf(index1.element) != -1 ) {
-      console.log ( 'je suis a la deuxieme condition' );
-    session.index2.splice (session.index2.indexOf(index1.element), 1);}
+    session.index1.splice (session.index1.indexOf(index1.index), 1);
           for ( var i=0;i < session.index1.length ;i++ ) {
       if ( index1.index < session.index1[i] ) {
             session.index1[i] = session.index1[i] - 1;
-           }}
+           }}}
+      else if (tempSession == -1 ) {
+          for ( var i=0;i < session.index1.length ;i++ ) {
+      if ( index1.index < session.index1[i] ) {
+            session.index1[i] = session.index1[i] - 1;
+           }}}
+      if (session.index2.indexOf(index1.element) != -1 ) {
+      console.log ( 'je suis a la deuxieme condition' );
+    session.index2.splice (session.index2.indexOf(index1.element), 1);}
 
      console.log( "session" + session.index1 );
      console.log( "session" + session.index2 );
