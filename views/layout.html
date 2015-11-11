@@ -45,7 +45,7 @@
               console.log ('Le serveur a un message pour vous je suis : ' + emind);
               var emtodo =  document.getElementsByTagName('em')[0].getAttribute('name');
               console.log ('Le serveur a un message pour vous : ' + emtodo);
-              socket.emit('message5',{ index: emind , element : emtodo });
+              socket.emit('message5',{ indexblan: emind , element : emtodo });
             }}
             socket.emit('condition', NomDuFichier );
             socket.on('message', function(message) {

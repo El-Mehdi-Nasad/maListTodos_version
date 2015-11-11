@@ -156,18 +156,25 @@ io.sockets.on('connection', function (socket) {
      console.log( "session" + session.index4 );
     });	
     socket.on('message5', function ( index1) {
-        console.log('Un client me parle ! Il me dit ne s affiche pas : ' + index1.index + index1.element );
-    var tempSession = session.index1.indexOf(index1.index);
-      if (tempSession != -1 ) {
+        console.log('Un client me parle ! Il me dit ne s affiche pas : ' + index1.indexblan + index1.element );
+     console.log( "session" + session.index1 );
+    var tempSession = function () {
+           for ( var i=0;i < session.index1.length ;i++ ) {
+              if (session.index1[i] == index1.indexblan) {
+                    return i; }
+            }
+            return -1;};
+      console.log ( 'je suis la maintenant' + tempSession()  );
+      if ( tempSession()  != -1 ) {
       console.log ( 'je suis a la premier condition' );
-    session.index1.splice (session.index1.indexOf(index1.index), 1);
+    session.index1.splice ( tempSession(), 1);
           for ( var i=0;i < session.index1.length ;i++ ) {
-      if ( index1.index < session.index1[i] ) {
+      if ( index1.indexblan < session.index1[i] ) {
             session.index1[i] = session.index1[i] - 1;
            }}}
-      else if (tempSession == -1 ) {
+      else if (tempSession() == -1 ) {
           for ( var i=0;i < session.index1.length ;i++ ) {
-      if ( index1.index < session.index1[i] ) {
+      if ( index1.indexblan < session.index1[i] ) {
             session.index1[i] = session.index1[i] - 1;
            }}}
       if (session.index2.indexOf(index1.element) != -1 ) {
