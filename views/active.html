@@ -1,0 +1,39 @@
+{% extends 'layout.html' %} 
+{% block content %} 
+ 
+</br></br></br>
+<div class="container">
+ <div class="row">
+ <div class="col-md-8 col-md-offset-2">
+ <div class="jumbotron">
+ <div class="text-center">
+  <h1 style="font-family: 'Gloria Hallelujah', cursive;">Todo List
+  </h1>
+  </br>
+  <ul class="list-group">
+  </ul>
+    
+
+
+  <form action="/todo/ajouter/" method="post"  class="form-horizontal">
+  <div class="form-group">
+    <button type="button" class="btn btn-default"><a href="/">  All  </a></button>
+    <button type="button" class="btn btn-default"><a href="/active">Active</a></button>
+    <button type="button" class="btn btn-default"><a href="/completed">Completed</a></button>
+    <button type="button" class="btn btn-default" style="text-align: right;"><a href="/">Clear completed</a></button>
+   </div>
+   <div class="form-group" style="text-align: center;"> 
+    <input type="text" name="newtodo" maxlength=53 id="newtodo"  style="width:370px; height:32px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;border: 1px solid #ccc;border-radius: 4px;color: #555;" placeholder="Que dois-je faire ?" autofocus />
+   </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">Ajouter</button>
+ </div>
+
+  </form>
+
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+{% endblock %} 

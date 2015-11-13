@@ -194,6 +194,9 @@ io.sockets.on('connection', function (socket) {
     console.log ('condition' );
     socket.emit('message3',{index3: session.index3, todo3 : session.index4} );
     }
+    else if ( index == 'active' ) {
+    socket.emit('message2',{index1: session.index1, todo : session.index2} );
+    }
     });	
 })	
 

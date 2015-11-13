@@ -74,6 +74,12 @@ router.get('/todo', function(req, res) {
     res.render('todo', {todolist: req.session.todolist, select1: req.session.select, vr: req.session.etat, fx: req.session.deja, date1: req.session.date1, cond: indexSupp, condt: todoSupp});
 });
 
+router.get('/active', function(req, res) { 
+    res.render('active');
+});
+router.get('/completed', function(req, res) { 
+    res.render('completed');
+});
 // Ajoute une tâche
 // En général les formulaire envoie les donné avec la méthode POST 
 // On ajoute un élément à la todolist
